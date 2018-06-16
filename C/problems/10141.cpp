@@ -128,17 +128,83 @@ int main()
 {
 	//added two lines to make cin/cout fast as printf/scanf
 	//flushing stdout before stdin accepts an input
-	//cin.tie(NULL);
-	//toggles off the synchronization of all the C++ standard streams
-	//ios_base::sync_with_stdio(false);
 
-	int TC;
 	//for fast reading input
 	//   write(TC) is for writing number only
-	TC = read(int);
+	int z= 1;
+	while(1){
+		
+		int req, proposal;
+		req = read(int);
+		proposal = read(int);
+		if( (req == 0) && (proposal == 0)) break;
 
-	while(TC--){
-		pnl;
+		string line2;
+		REP(i,req){
+			getline(cin, line2, '\n');
+			
+		}
+
+		string curr_proposal;
+		string best_proposal;
+		int curr_req;
+		int best_req = 0;
+		float curr_price;
+		float best_price = -1;
+	
+		REP(i, proposal){
+			
+			getline(cin, curr_proposal, '\n');
+
+			scanf("%f %d\n", &curr_price,&curr_req);
+			string line;	
+			REP(i, curr_req){
+				getline(cin,line, '\n');
+			}
+
+			if (curr_req > best_req){
+				if (best_price == -1)
+					best_price = curr_price;
+
+					best_proposal = curr_proposal;
+					best_price = curr_price;
+					best_req = curr_req;
+
+
+
+
+
+			} else if (curr_req == best_req){
+				if(curr_price < best_price){
+					best_proposal = curr_proposal;
+					best_price = curr_price;
+					best_req = curr_req;
+
+
+				}
+
+
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		}
+
+
+			if(z>1) pnl;
+			printf("RFP #%d\n", z++);
+			cout << best_proposal << endl;
 
 	}
 	return 0;

@@ -132,13 +132,60 @@ int main()
 	//toggles off the synchronization of all the C++ standard streams
 	//ios_base::sync_with_stdio(false);
 
-	int TC;
-	//for fast reading input
-	//   write(TC) is for writing number only
-	TC = read(int);
 
-	while(TC--){
-		pnl;
+	while(1){
+		
+
+		int TC;
+		TC=read(int);
+		if(TC == 0) break;
+
+		string curr;
+		string position = "+x";
+		int right = TC-1;
+		REP(i,right){
+			cin >> curr;
+			if(curr.compare("No")){
+				if( !curr.compare("+z")){
+
+					if( !position.compare("+z")) position = "-x";
+					else if ( !position.compare("-z")) position = "+x";
+					else if ( !position.compare("+x")) position = "+z";
+					else if ( !position.compare("-x")) position = "-z";
+				}
+				else if( !curr.compare("-z")){
+					if ( !position.compare("+z")) position = "+x";
+					else if ( !position.compare("-z")) position = "-x";
+					else if ( !position.compare("+x")) position = "-z";
+					else if ( !position.compare("-x")) position = "+z";
+
+				}
+				else if( !curr.compare("+y")){
+					if ( !position.compare("+y")) position = "-x";
+					else if (!position.compare("-y")) position = "+x";
+					else if ( !position.compare("+x")) position = "+y";
+					else if ( !position.compare("-x")) position = "-y";
+
+				}
+				else if( !curr.compare("-y")){
+
+					if ( !position.compare("+y")) position = "+x";
+					else if (!position.compare("-y")) position = "-x";
+					else if ( !position.compare("+x")) position = "-y";
+					else if ( !position.compare("-x")) position = "+y";
+
+				}
+
+
+
+			}
+
+
+
+
+		}
+
+		cout << position << endl;
 
 	}
 	return 0;

@@ -128,17 +128,61 @@ int main()
 {
 	//added two lines to make cin/cout fast as printf/scanf
 	//flushing stdout before stdin accepts an input
-	//cin.tie(NULL);
-	//toggles off the synchronization of all the C++ standard streams
-	//ios_base::sync_with_stdio(false);
 
-	int TC;
+	int z =1;
+	int newline = 0;
 	//for fast reading input
 	//   write(TC) is for writing number only
-	TC = read(int);
 
-	while(TC--){
+	while(1){
+
+		int n, m , fuse;
+
+		cin >>n >> m >> fuse;
+
+		if( (n==0) && (m == 0) && (fuse == 0)) break;
+
+		int power[n];
+		int onoff[n];
+
+		REP(i, n){
+			int test;
+			cin >> test;
+			power[i] = test;
+			onoff[i] = 0;
+		}
+
+		int t;
+		int total = 0 ;
+		int maximal = 0;
+		int blown = 0;
+		REP(i, m){
+			cin >> t;
+			int test = !(onoff[t-1]);
+			onoff[t-1] = test;
+
+			if(onoff[t-1] != 0){
+				total += power[t-1];
+				if(total > fuse) 
+					blown = 1;
+				maximal = MAX(maximal, total);
+			} else {
+				total -= power[t-1];
+			}
+
+
+		}
+
+		printf("Sequence %d\n", z++);
+		if(blown)
+			printf("Fuse was blown.\n");
+		else
+			printf("Fuse was not blown.\nMaximal power consumption was %d amperes.\n", maximal);
+
 		pnl;
+
+
+
 
 	}
 	return 0;

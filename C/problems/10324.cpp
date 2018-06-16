@@ -128,17 +128,41 @@ int main()
 {
 	//added two lines to make cin/cout fast as printf/scanf
 	//flushing stdout before stdin accepts an input
-	//cin.tie(NULL);
-	//toggles off the synchronization of all the C++ standard streams
-	//ios_base::sync_with_stdio(false);
+	string num;
+	int z = 1;
+	while(cin >> num){
+		int TC;
+		TC = read(int);
+		int a,b,x,y;
+		for(int i = 0; i < TC;i++){
+			scanf("%d %d\n", &a,&b);
+			x = min(a,b);
+			y = max(a,b);
+			
+			int counter = 1;
+			char last = num[y];
+			for(int p = x; p < y; p++){
+			//	cout <<"p: " << p <<"== " <<  num[p] << " | " << last << endl;
+				if(num[p] != last){
+					counter = 0;
+					break;
+				}
+				last = num[p];
 
-	int TC;
-	//for fast reading input
-	//   write(TC) is for writing number only
-	TC = read(int);
 
-	while(TC--){
-		pnl;
+			}
+			if(i == 0)
+				printf("Case %d:\n", z++);
+			if(counter == 1)
+				printf("Yes\n");
+			else
+				printf("No\n");
+
+
+		}
+
+
+
 
 	}
 	return 0;

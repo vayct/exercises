@@ -132,13 +132,39 @@ int main()
 	//toggles off the synchronization of all the C++ standard streams
 	//ios_base::sync_with_stdio(false);
 
-	int TC;
-	//for fast reading input
-	//   write(TC) is for writing number only
-	TC = read(int);
+	while(1){
+		
+		int k,m,c,r;
+		k = read(int);
+		if(k == 0) break;
+		m = read(int);
+		
+		int courses[k];
+		REP(i,k){
+			courses[i] = read(int);
+		}
 
-	while(TC--){
-		pnl;
+		int counter = 1;
+		REP(i,m){
+			c = read(int);
+			r = read(int);
+			int req_counter = 0;
+			int curr_course;
+			REP(i2, c){
+				curr_course = read(int);
+				REP(i3,k){
+					if(curr_course == courses[i3]) req_counter++;
+				}
+
+			}
+			if(req_counter < r) counter = 0;
+
+
+		}
+		if(counter)
+			printf("yes\n");
+		else
+			printf("no\n");
 
 	}
 	return 0;

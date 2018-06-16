@@ -128,17 +128,86 @@ int main()
 {
 	//added two lines to make cin/cout fast as printf/scanf
 	//flushing stdout before stdin accepts an input
-	//cin.tie(NULL);
-	//toggles off the synchronization of all the C++ standard streams
-	//ios_base::sync_with_stdio(false);
 
-	int TC;
+	float height, day, night, fatigue;
 	//for fast reading input
 	//   write(TC) is for writing number only
-	TC = read(int);
 
-	while(TC--){
-		pnl;
+
+	while(1){
+		
+		int curr = 1;
+		float progress = 0;
+		cin >> height;
+		if(height == 0) break;
+
+		cin >> day >> night >> fatigue;
+		float percentage = fatigue/100.0;
+		
+		float climbing = day;
+		while( ( progress < height) && (progress >= 0)){
+			
+			climbing = day * ( 1 - (percentage * (curr - 1)));
+			if(climbing < 0) climbing = 0;
+			
+			progress += climbing;
+			if(progress > height) break;
+			progress -= night;
+			if(progress < 0) break;
+
+			//cout << "progress: " << progress << "  | climbing: " << climbing << endl;
+			curr++;
+
+		}
+
+		if(progress > height) 
+			cout << "success on day " << curr << endl;
+		else
+			cout << "failure on day " << curr << endl;
+			
+
+		/*
+		progress += day;
+		if(progress > height) {
+			cout << "success on day " << curr << endl;
+
+
+		}else {
+			progress -= night;
+			day = day * (1 - percentage);
+			cout << "day: " << day << endl;
+			curr++;
+			while( (progress < height) && (progress > 0)){
+				progress += day;
+				if(progress > height) break;
+
+				progress -= night;
+				curr++;
+
+			}
+
+			if(progress > height) 
+				cout << "success on day " << curr << endl;
+			else
+				cout << "failure on day " << curr << endl;
+			
+
+		}
+		*/
+
+
+
+
+
+
+
+		
+
+			
+
+	
+
+
 
 	}
 	return 0;

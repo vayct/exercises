@@ -120,6 +120,33 @@ template <typename T> inline T readInt()
 /******** User-defined Function *******/
 
 
+long unsigned int get_digit(long unsigned int x){
+
+	if (x >= 10)
+		get_digit(x/10);
+
+	return x%10;
+
+}
+
+
+long unsigned int all_sum(long unsigned int *x){
+
+	int total = 0;
+
+	while(*x > 9){
+		total += get_digit(*x);
+		*x = *x/10;
+	}
+	*x = total + *x;
+	if(*x > 9){
+		all_sum(x);
+
+	}
+	return *x;
+
+}
+
 /**************************************/
 
 
@@ -128,17 +155,44 @@ int main()
 {
 	//added two lines to make cin/cout fast as printf/scanf
 	//flushing stdout before stdin accepts an input
-	//cin.tie(NULL);
-	//toggles off the synchronization of all the C++ standard streams
-	//ios_base::sync_with_stdio(false);
+	
+	string s1;
+	string s2;
 
-	int TC;
-	//for fast reading input
-	//   write(TC) is for writing number only
-	TC = read(int);
+	while( getline(cin, s1, '\n')){
+		getline(cin,s2, '\n');
+		long unsigned int n1=0;
+		long unsigned int n2=0;
 
-	while(TC--){
-		pnl;
+		int s1_len = s1.length();
+		for(int i = 0; i < s1_len; i++) {
+			char a = s1[i];
+			if(( a >= 'a') && ( a <= 'z'))
+				n1 += (a - 96);
+			else if (( a >= 'A') && ( a <= 'Z'))
+				n1 += (a - 64);
+			
+		
+		}
+		int s2_len = s2.length();	
+		for(int i = 0; i < s2_len; i++) {
+			char a = s2[i];
+			if(( a >= 'a') && ( a <= 'z'))
+				n2 += (a - 96);
+			else if (( a >= 'A') && ( a <= 'Z'))
+				n2 += (a - 64);
+			
+		
+		}
+
+		int result1 = all_sum(&n1);
+		int result2 = all_sum(&n2);
+
+		float mn = min(result1, result2);
+		float mx = max(result1, result2);
+
+		printf("%.2f %%\n", (mn/mx)*100);
+
 
 	}
 	return 0;
